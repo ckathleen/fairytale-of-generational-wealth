@@ -268,21 +268,6 @@
       '</div></div><div class="folio">❦</div>');
   }
 
-  var coverPage=pageShell('r',
-    '<div class="cover-title">'+
-      '<div class="eyebrow">Once upon a time …</div>'+
-      '<h2>A Fairytale of Generational Wealth</h2>'+
-      '<div class="sub">(and Marriage)</div>'+
-      '<div class="cover-plate"><div class="plate-frame">'+
-        '<div class="plate-no">Cover Plate</div>'+
-        '<p class="plate-desc">Storybook cover: Sam standing beside his beautiful wife, Casey popping up behind them, photobombing.</p>'+
-        '<div class="plate-hint">· visual to come ·</div>'+
-      '</div></div>'+
-    '</div>');
-
-  var bookplatePage=pageShell('l',
-    '<div class="bookplate"><span style="color:var(--gold-faint);font-size:clamp(14px,1.6vw,22px);">❦</span></div>');
-
   var finisPage=pageShell('l',
     '<div class="finis">'+
       '<div class="script">And They Lived Happily Ever After</div>'+
@@ -295,8 +280,8 @@
       '<p>Written in San Francisco · MMXXVI<br>Illustrations forthcoming.<br>No decacorns were harmed in the making of this tale.</p>'+
     '</div>');
 
-  // spreads: [cover] + 13 story beats + [finis]
-  var spreads=[{left:bookplatePage,right:coverPage}];
+  // spreads: 13 story beats + [finis]
+  var spreads=[];
   STORY.forEach(function(s,i){spreads.push({left:copyPage('l',s,i),right:platePage('r',s,i)});});
   spreads.push({left:finisPage,right:colophonPage});
 
@@ -341,9 +326,8 @@
   var counter=document.getElementById('counter');
 
   function label(){
-    if(current===0)return 'Cover';
     if(current===N)return 'Finis';
-    return 'Spread '+ROMAN[current-1]+' of '+ROMAN[N-2];
+    return 'Spread '+ROMAN[current]+' of '+ROMAN[N-1];
   }
   function refresh(){
     prevBtn.hidden=current===0;
