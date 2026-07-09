@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Fairytale of Generational Wealth (and Marriage)</title>
+<style>
+  :root{
+    --parchment:#ece2cb;
+    --parchment-deep:#e2d5b8;
+    --cream:#f3ead6;
+    --ink:#43362a;
+    --ink-soft:#6b5a45;
+    --gold:#9d7d3d;
+    --gold-faint:rgba(157,125,61,.45);
+    --desk:#1e1410;
+    --leather:#3a2417;
+    --font-display:'Luminari','Trattatello',fantasy,serif;
+    --font-script:'Snell Roundhand','Apple Chancery','Brush Script MT',cursive;
+    --font-body:'Cochin','Iowan Old Style','Baskerville',Georgia,serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    background:
+      radial-gradient(ellipse 120% 90% at 50% 30%, #33221a 0%, var(--desk) 55%, #120b08 100%);
+    color:var(--parchment);
+    font-family:var(--font-body);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-height:100vh;overflow:hidden;padding:2vh 1vw;
+  }
+  body::after{
+    content:'';position:fixed;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+  }
+
+  .masthead{
+    text-align:center;margin-bottom:2.2vh;user-select:none;
+  }
+  .masthead .over{
+    font-size:clamp(9px,.85vw,11px);letter-spacing:.42em;text-transform:uppercase;
+    color:var(--gold);opacity:.85;
+  }
+  .masthead h1{
+    font-family:var(--font-display);font-weight:400;
+    font-size:clamp(15px,1.7vw,24px);letter-spacing:.06em;color:var(--cream);
+    text-wrap:balance;margin-top:.4em;
+  }
+
+  /* ————— the book ————— */
+  .book-scene{
+    position:relative;
+    width:min(1120px,96vw,calc(82vh * 1.55));
+    aspect-ratio:1.55;
+    perspective:2600px;
+  }
+  .board{ /* leather cover peeking out beneath the pages */
+    position:absolute;inset:-1.4% -1.1%;
+    background:linear-gradient(135deg,#4a2f1e 0%,var(--leather) 45%,#2a1810 100%);
+    border-radius:10px 16px 16px 10px;
+    box-shadow:0 45px 90px rgba(0,0,0,.75),0 10px 30px rgba(0,0,0,.6);
+  }
+  .board::before{
+    content:'';position:absolute;inset:6px;border:1px solid rgba(157,125,61,.35);border-radius:8px;
+  }
+  .edges-l,.edges-r{ /* stacked page edges */
+    position:absolute;top:.6%;bottom:.6%;width:1.6%;
+    background:repeating-linear-gradient(90deg,var(--cream) 0 2px,#d9cba6 2px 3px);
+  }
+  .edges-l{left:-.4%;border-radius:4px 0 0 4px;}
+  .edges-r{right:-.4%;border-radius:0 4px 4px 0;}
+
+  .book{position:absolute;inset:0;transform-style:preserve-3d;}
+
+  .page{
+    position:absolute;top:0;height:100%;width:50%;overflow:hidden;
+    background:
+      radial-gradient(ellipse 140% 100% at 50% 40%, var(--cream) 0%, var(--parchment) 60%, var(--parchment-deep) 100%);
+    color:var(--ink);
+  }
+  .page::after{ /* paper grain */
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23p)' opacity='.05'/%3E%3C/svg%3E");
+  }
+  .page.side-l{left:0;border-radius:8px 0 0 8px;
+    box-shadow:inset -28px 0 34px -22px rgba(67,54,42,.5);}
+  .page.side-r{left:50%;border-radius:0 8px 8px 0;
+    box-shadow:inset 28px 0 34px -22px rgba(67,54,42,.5);}
+
+  .page-inner{
+    position:absolute;inset:4.5% 7%;display:flex;flex-direction:column;
+    align-items:center;text-align:center;
+  }
+  .rule-frame{position:absolute;inset:2.8% 4.5%;pointer-events:none;
+    border:1px solid var(--gold-faint);}
+  .rule-frame::before{content:'';position:absolute;inset:5px;border:1px solid rgba(157,125,61,.25);}
+  .rule-frame i{position:absolute;font-style:normal;color:var(--gold);font-size:clamp(10px,1.1vw,15px);line-height:1;background:transparent;}
+  .rule-frame i:nth-child(1){top:-7px;left:-5px;}
+  .rule-frame i:nth-child(2){top:-7px;right:-5px;transform:scaleX(-1);}
+  .rule-frame i:nth-child(3){bottom:-7px;left:-5px;transform:scaleY(-1);}
+  .rule-frame i:nth-child(4){bottom:-7px;right:-5px;transform:scale(-1);}
+
+  /* ————— page content styles ————— */
+  .orn{color:var(--gold);font-size:clamp(12px,1.3vw,17px);letter-spacing:.6em;margin:1.2em 0 .9em;}
+  .copy{
+    max-width:34ch;font-size:clamp(12px,1.42vw,18px);line-height:1.62;
+    color:var(--ink);text-align:center;flex:1;display:flex;flex-direction:column;
+    justify-content:center;gap:1em;
+  }
+  .copy p{text-wrap:pretty;}
+  .copy .lead::first-letter{
+    font-family:var(--font-display);float:left;
+    font-size:3em;line-height:.82;padding:.04em .12em 0 0;color:var(--gold);
+  }
+  .folio{
+    font-size:clamp(9px,.9vw,12px);letter-spacing:.35em;color:var(--ink-soft);
+    padding-bottom:.4em;font-variant-numeric:tabular-nums;
+  }
+
+  .plate{
+    flex:1;width:100%;display:flex;align-items:center;justify-content:center;padding:4% 0;
+  }
+  .plate-frame{
+    width:100%;max-height:100%;aspect-ratio:4/3.1;
+    border:1px solid var(--gold-faint);outline:1px solid rgba(157,125,61,.22);outline-offset:4px;
+    background:
+      repeating-linear-gradient(45deg,transparent 0 5px,rgba(107,90,69,.07) 5px 6px),
+      linear-gradient(160deg,rgba(107,90,69,.10),rgba(107,90,69,.02));
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:.9em;padding:7%;
+  }
+  .plate-no{
+    font-size:clamp(9px,.85vw,11px);letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+  }
+  .plate-desc{
+    font-style:italic;color:var(--ink-soft);
+    font-size:clamp(11px,1.2vw,15.5px);line-height:1.55;max-width:32ch;text-align:center;text-wrap:pretty;
+  }
+  .plate-hint{
+    font-size:clamp(8px,.8vw,10px);letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink-soft);opacity:.65;
+  }
+
+  .cover-title{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.1em;}
+  .cover-title .eyebrow{font-size:clamp(9px,.9vw,12px);letter-spacing:.4em;text-transform:uppercase;color:var(--gold);}
+  .cover-title h2{
+    font-family:var(--font-display);font-weight:400;color:var(--ink);
+    font-size:clamp(19px,2.6vw,36px);line-height:1.25;text-wrap:balance;max-width:14ch;
+  }
+  .cover-title .sub{
+    font-family:var(--font-script);font-size:clamp(16px,2vw,27px);color:var(--gold);
+  }
+  .cover-plate{width:78%;}
+  .cover-plate .plate-frame{aspect-ratio:5/3.1;padding:5%;}
+
+  .bookplate{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.2em;}
+  .bookplate .exlibris{font-size:clamp(10px,1vw,13px);letter-spacing:.5em;text-transform:uppercase;color:var(--gold);}
+  .bookplate .house{font-family:var(--font-display);font-size:clamp(16px,1.9vw,26px);color:var(--ink);}
+  .bookplate .note{font-style:italic;color:var(--ink-soft);font-size:clamp(11px,1.2vw,15px);max-width:26ch;line-height:1.6;text-wrap:balance;}
+  .sep{width:34%;border:none;border-top:1px solid var(--gold-faint);position:relative;}
+  .sep::after{content:'❦';position:absolute;top:-.62em;left:50%;transform:translateX(-50%);
+    background:var(--parchment);padding:0 .5em;color:var(--gold);font-size:.9em;}
+
+  .finis{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.4em;}
+  .finis .script{
+    font-family:var(--font-script);color:var(--ink);
+    font-size:clamp(24px,3.4vw,52px);line-height:1.3;text-wrap:balance;max-width:11ch;
+  }
+  .finis .the-end{
+    font-family:var(--font-display);color:var(--gold);margin-top:1em;
+    font-size:clamp(14px,1.6vw,22px);letter-spacing:.3em;
+  }
+  .colophon{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.1em;
+    color:var(--ink-soft);font-size:clamp(10px,1.1vw,14px);font-style:italic;line-height:1.7;}
+  .colophon .mark{font-style:normal;color:var(--gold);font-size:1.4em;}
+
+  /* ————— turning leaves ————— */
+  .leaf{
+    position:absolute;top:0;left:50%;width:50%;height:100%;
+    transform-style:preserve-3d;transform-origin:left center;
+    transition:transform 1.15s cubic-bezier(.42,.05,.3,1);
+  }
+  .leaf.turned{transform:rotateY(-180deg);}
+  .leaf .face{
+    position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  }
+  .leaf .face.front .page{left:0;width:100%;}
+  .leaf .face.back{transform:rotateY(180deg);}
+  .leaf .face.back .page{left:0;width:100%;}
+  .leaf .face .shade{ /* moving light across a turning leaf */
+    position:absolute;inset:0;pointer-events:none;opacity:0;
+    transition:opacity .55s ease;
+    background:linear-gradient(100deg,rgba(67,54,42,.32),transparent 55%);
+  }
+  .leaf.mid .face .shade{opacity:1;}
+
+  .spine{
+    position:absolute;top:0;bottom:0;left:50%;width:6%;transform:translateX(-50%);
+    pointer-events:none;z-index:60;
+    background:linear-gradient(90deg,transparent,rgba(40,28,18,.34) 48%,rgba(40,28,18,.4) 52%,transparent);
+  }
+
+  /* ————— corner turn zones ————— */
+  .corner{
+    position:absolute;bottom:0;width:24%;height:26%;z-index:90;
+    background:none;border:none;cursor:pointer;padding:0;font:inherit;
+  }
+  .corner .fold{
+    position:absolute;bottom:1.5%;width:clamp(30px,4.5vw,54px);aspect-ratio:1;
+    transition:transform .35s ease,opacity .35s ease;opacity:.85;
+  }
+  .corner.next{right:0;}
+  .corner.prev{left:0;}
+  .corner.next .fold{
+    right:1.5%;
+    background:linear-gradient(225deg,transparent 48%,#d9caa4 49%,var(--cream) 60%,#cbbb92 100%);
+    clip-path:polygon(100% 0,100% 100%,0 100%);
+    filter:drop-shadow(-3px -3px 4px rgba(40,28,18,.3));
+  }
+  .corner.prev .fold{
+    left:1.5%;
+    background:linear-gradient(135deg,transparent 48%,#d9caa4 49%,var(--cream) 60%,#cbbb92 100%);
+    clip-path:polygon(0 0,100% 100%,0 100%);
+    filter:drop-shadow(3px -3px 4px rgba(40,28,18,.3));
+  }
+  .corner:hover .fold,.corner:focus-visible .fold{transform:scale(1.35);opacity:1;}
+  .corner:focus-visible{outline:2px solid var(--gold);outline-offset:-6px;border-radius:8px;}
+  .corner[hidden]{display:none;}
+
+  .caption{
+    margin-top:2.4vh;text-align:center;user-select:none;
+    font-size:clamp(9px,.9vw,12px);letter-spacing:.3em;text-transform:uppercase;
+    color:var(--gold);opacity:.8;font-variant-numeric:tabular-nums;
+  }
+  .caption .hint{opacity:.7;letter-spacing:.22em;}
+
+  @media (prefers-reduced-motion:reduce){
+    .leaf{transition:none;}
+    .corner .fold{transition:none;}
+  }
+</style>
+
+<header class="masthead">
+  <div class="over">❦ &nbsp;A Topology Production&nbsp; ❦</div>
+  <h1>A Fairytale of Generational Wealth <em style="font-family:var(--font-script);font-style:normal;">(and Marriage)</em></h1>
+</header>
+
+<main class="book-scene" aria-label="Storybook">
+  <div class="board"></div>
+  <div class="edges-l"></div><div class="edges-r"></div>
+  <div class="book" id="book"></div>
+  <div class="spine"></div>
+  <button class="corner prev" id="prevBtn" aria-label="Turn back a page" hidden><span class="fold"></span></button>
+  <button class="corner next" id="nextBtn" aria-label="Turn the page"><span class="fold"></span></button>
+</main>
+
+<footer class="caption"><span id="counter">Cover</span> &nbsp;·&nbsp; <span class="hint">click a page corner, or press ← →</span></footer>
+
+<script>
+(function(){
+  var ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII'];
+
+  var STORY=[
+    {copy:['Once upon a time, Sam and Casey met the way all great partnerships begin: armed and fighting, somewhere north of San Francisco.'],
+     visual:'Photograph — two duelists sword-fighting in a golden, hilly field.'},
+    {copy:['The friendship blossomed on a ski trip to Sun Valley, where Sam and Casey learned to collaborate — and to strategize — on a mission to win the affection of a maiden.'],
+     visual:'Photograph — Sam and Casey laughing at a dinner table while a black-haired woman glares at them.'},
+    {copy:['Deep trust formed. The kind where you want the other person to win at everything. Business, love — all of it.'],
+     visual:'Cartoon — Sam, speech bubble to Casey: “You have to promise me you will not tell ANYONE this!”'},
+    {copy:['Then one night, Sam shared a vision: build a generational company — Source.com — and change the world.'],
+     visual:'Illustration — Sam daydreaming on a massive yacht christened Source.com while it rains money.'},
+    {copy:['Casey was IN. Immediately. Conviction before a single Tier 1 investor. Casey believed in Sam with all her heart.'],
+     visual:'Photograph, cheeky — Casey thrusting out a term sheet and a pen.'},
+    {copy:['Sam took Casey’s offer. Why? Because winning alone is boring. He wanted people who are smart, fun, and trusted — people who actually care about him becoming his greatest self. (And yes, making his female friends rich along the way. A true ally.)',
+           'More than that, Casey promised to complete two quests for Sam: find him the love of his life, and help him secure the best lead investor in the land.'],
+     visual:'Photograph — the handshake. A signing moment for the ages.'},
+    {copy:['Sam buys Source.com within 44 days. Some men negotiate. Sam closes.'],
+     visual:'Screen capture — a countdown clock beside the domain-purchase confirmation.'},
+    {copy:['After Topology and Genius invested, Casey, Adam, and Ben spread the lore far and wide: of every founder they had ever met, Sam alone possessed the generational aura to build a decacorn. Soon after, Sam raises a mega-round from a Tier 1 AI firm.'],
+     visual:'Illustration — town criers and a whisper network spreading the gospel of Sam.'},
+    {copy:['Casey engineers the biggest glow-up of Sam’s life, consulting on every detail — down to the exact skin laser. A superday with a famous dermatologist is already on the calendar.'],
+     visual:'Montage — before &amp; after, plus the dermatologist’s office.'},
+    {copy:['Sam gets to work. The universe aligns. Source breaks $1B in revenue in record time — and yes, beats Mercor.'],
+     visual:'Chart — rocket-ship revenue, up and to the right.'},
+    {copy:['Then, the most important quest of all: Topology searches long and far for Sam’s dream wife — beautiful, graceful, full of class, brilliant, Jewish, and ready to build an empire together.'],
+     visual:'Photograph — Casey interviewing a looong line of hopeful candidates.'},
+    {copy:['Topology proves true love is real.'],
+     visual:'Fairytale wedding — Sam and his bride on horseback at a ranch in Sedona.'},
+    {copy:['Source becomes a wild success. Sam becomes a billionaire — with the marriage everyone dreams of and very few achieve. Casey tells her LPs that Sam returned Fund I. Casey and Sam’s kids go to school together.',
+           'And everyone lives happily ever after.'],
+     visual:'San Francisco skyline — two mansions, one flying a “Topology Fund I · 10× DPI” banner, beside a castle whose standard reads “Source.com surpasses $10B in revenue.”'}
+  ];
+
+  function frame(){return '<div class="rule-frame"><i>❧</i><i>❧</i><i>❧</i><i>❧</i></div>';}
+
+  function pageShell(side,inner){
+    return '<div class="page side-'+side+'">'+frame()+'<div class="page-inner">'+inner+'</div></div>';
+  }
+  function copyPage(side,s,idx){
+    var paras=s.copy.map(function(p,j){return '<p class="'+(j===0?'lead':'')+'">'+p+'</p>';}).join('');
+    return pageShell(side,'<div class="orn">❦</div><div class="copy">'+paras+'</div><div class="folio">'+ROMAN[idx]+'</div>');
+  }
+  function platePage(side,s,idx){
+    return pageShell(side,
+      '<div class="plate"><div class="plate-frame">'+
+        '<div class="plate-no">Plate '+ROMAN[idx]+'</div>'+
+        '<p class="plate-desc">'+s.visual+'</p>'+
+        '<div class="plate-hint">· visual to come ·</div>'+
+      '</div></div><div class="folio">❦</div>');
+  }
+
+  var coverPage=pageShell('r',
+    '<div class="cover-title">'+
+      '<div class="eyebrow">Once upon a time …</div>'+
+      '<h2>A Fairytale of Generational Wealth</h2>'+
+      '<div class="sub">(and Marriage)</div>'+
+      '<div class="cover-plate"><div class="plate-frame">'+
+        '<div class="plate-no">Cover Plate</div>'+
+        '<p class="plate-desc">Storybook cover — Sam standing beside his beautiful wife, Casey popping up behind them, photobombing.</p>'+
+        '<div class="plate-hint">· visual to come ·</div>'+
+      '</div></div>'+
+    '</div>');
+
+  var bookplatePage=pageShell('l',
+    '<div class="bookplate">'+
+      '<div class="exlibris">Ex Libris</div>'+
+      '<div class="house">The House of Topology</div>'+
+      '<hr class="sep">'+
+      '<p class="note">Being a true and faithful account of Sam &amp; Casey, as witnessed by those who were there.</p>'+
+    '</div>');
+
+  var finisPage=pageShell('l',
+    '<div class="finis">'+
+      '<div class="script">And They Lived Happily Ever After</div>'+
+      '<div class="the-end">The End</div>'+
+    '</div>');
+
+  var colophonPage=pageShell('r',
+    '<div class="colophon">'+
+      '<span class="mark">❦</span>'+
+      '<p>Written in San Francisco · MMXXVI<br>Illustrations forthcoming.<br>No decacorns were harmed in the making of this tale.</p>'+
+    '</div>');
+
+  // spreads: [cover] + 13 story beats + [finis]
+  var spreads=[{left:bookplatePage,right:coverPage}];
+  STORY.forEach(function(s,i){spreads.push({left:copyPage('l',s,i),right:platePage('r',s,i)});});
+  spreads.push({left:finisPage,right:colophonPage});
+
+  var book=document.getElementById('book');
+  var N=spreads.length-1; // number of leaves
+  var current=0;
+
+  // static base pages
+  book.insertAdjacentHTML('beforeend',spreads[0].left);
+  book.insertAdjacentHTML('beforeend',spreads[N].right);
+
+  var leaves=[];
+  for(var i=0;i<N;i++){
+    var leaf=document.createElement('div');
+    leaf.className='leaf';
+    leaf.innerHTML=
+      '<div class="face front">'+spreads[i].right+'<div class="shade"></div></div>'+
+      '<div class="face back">'+spreads[i+1].left+'<div class="shade"></div></div>';
+    book.appendChild(leaf);
+    leaves.push(leaf);
+    leaf.addEventListener('transitionend',function(e){
+      if(e.propertyName!=='transform')return;
+      e.currentTarget.classList.remove('mid');
+      e.currentTarget.style.zIndex='';
+      stackZ();
+    });
+  }
+
+  function stackZ(){
+    leaves.forEach(function(L,i){
+      if(L.style.zIndex)return; // mid-turn boost stays
+      L.style.zIndex='';
+      L.dataset.z=L.classList.contains('turned')?(10+i):(10+N-i);
+      L.style.zIndex=L.dataset.z;
+    });
+  }
+  // initial stack
+  leaves.forEach(function(L,i){L.style.zIndex=10+N-i;});
+
+  var prevBtn=document.getElementById('prevBtn');
+  var nextBtn=document.getElementById('nextBtn');
+  var counter=document.getElementById('counter');
+
+  function label(){
+    if(current===0)return 'Cover';
+    if(current===N)return 'Finis';
+    return 'Spread '+ROMAN[current-1]+' of '+ROMAN[N-2];
+  }
+  function refresh(){
+    prevBtn.hidden=current===0;
+    nextBtn.hidden=current===N;
+    counter.textContent=label();
+  }
+  function next(){
+    if(current>=N)return;
+    var L=leaves[current];
+    L.style.zIndex=200+current;L.classList.add('mid','turned');
+    current++;refresh();
+  }
+  function prev(){
+    if(current<=0)return;
+    current--;
+    var L=leaves[current];
+    L.style.zIndex=200+(N-current);L.classList.add('mid');L.classList.remove('turned');
+    refresh();
+  }
+
+  nextBtn.addEventListener('click',next);
+  prevBtn.addEventListener('click',prev);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight')next();
+    else if(e.key==='ArrowLeft')prev();
+  });
+  refresh();
+})();
+</script>
+
+</html>
