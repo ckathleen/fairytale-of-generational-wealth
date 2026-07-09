@@ -22,53 +22,17 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{height:100%;}
   body{
-    background:
-      radial-gradient(ellipse 120% 90% at 50% 30%, #33221a 0%, var(--desk) 55%, #120b08 100%);
+    background:var(--parchment-deep);
     color:var(--parchment);
     font-family:var(--font-body);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    min-height:100vh;overflow:hidden;padding:2vh 1vw;
-  }
-  body::after{
-    content:'';position:fixed;inset:0;pointer-events:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
-  }
-
-  .masthead{
-    text-align:center;margin-bottom:2.2vh;user-select:none;
-  }
-  .masthead .over{
-    font-size:clamp(9px,.85vw,11px);letter-spacing:.42em;text-transform:uppercase;
-    color:var(--gold);opacity:.85;
-  }
-  .masthead h1{
-    font-family:var(--font-display);font-weight:400;
-    font-size:clamp(15px,1.7vw,24px);letter-spacing:.06em;color:var(--cream);
-    text-wrap:balance;margin-top:.4em;
+    min-height:100vh;overflow:hidden;
   }
 
   /* ————— the book ————— */
   .book-scene{
-    position:relative;
-    width:min(1120px,96vw,calc(82vh * 1.55));
-    aspect-ratio:1.55;
+    position:fixed;inset:0;
     perspective:2600px;
   }
-  .board{ /* leather cover peeking out beneath the pages */
-    position:absolute;inset:-1.4% -1.1%;
-    background:linear-gradient(135deg,#4a2f1e 0%,var(--leather) 45%,#2a1810 100%);
-    border-radius:10px 16px 16px 10px;
-    box-shadow:0 45px 90px rgba(0,0,0,.75),0 10px 30px rgba(0,0,0,.6);
-  }
-  .board::before{
-    content:'';position:absolute;inset:6px;border:1px solid rgba(157,125,61,.35);border-radius:8px;
-  }
-  .edges-l,.edges-r{ /* stacked page edges */
-    position:absolute;top:.6%;bottom:.6%;width:1.6%;
-    background:repeating-linear-gradient(90deg,var(--cream) 0 2px,#d9cba6 2px 3px);
-  }
-  .edges-l{left:-.4%;border-radius:4px 0 0 4px;}
-  .edges-r{right:-.4%;border-radius:0 4px 4px 0;}
 
   .book{position:absolute;inset:0;transform-style:preserve-3d;}
 
@@ -82,9 +46,9 @@
     content:'';position:absolute;inset:0;pointer-events:none;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23p)' opacity='.05'/%3E%3C/svg%3E");
   }
-  .page.side-l{left:0;border-radius:8px 0 0 8px;
+  .page.side-l{left:0;
     box-shadow:inset -28px 0 34px -22px rgba(67,54,42,.5);}
-  .page.side-r{left:50%;border-radius:0 8px 8px 0;
+  .page.side-r{left:50%;
     box-shadow:inset 28px 0 34px -22px rgba(67,54,42,.5);}
 
   .page-inner{
@@ -228,9 +192,10 @@
   .corner[hidden]{display:none;}
 
   .caption{
-    margin-top:2.4vh;text-align:center;user-select:none;
+    position:fixed;left:50%;bottom:1.4vh;transform:translateX(-50%);
+    z-index:120;text-align:center;user-select:none;pointer-events:none;
     font-size:clamp(9px,.9vw,12px);letter-spacing:.3em;text-transform:uppercase;
-    color:var(--gold);opacity:.8;font-variant-numeric:tabular-nums;
+    color:var(--ink-soft);opacity:.75;font-variant-numeric:tabular-nums;white-space:nowrap;
   }
   .caption .hint{opacity:.7;letter-spacing:.22em;}
 
@@ -240,14 +205,7 @@
   }
 </style>
 
-<header class="masthead">
-  <div class="over">❦ &nbsp;A Topology Production&nbsp; ❦</div>
-  <h1>A Fairytale of Generational Wealth <em style="font-family:var(--font-script);font-style:normal;">(and Marriage)</em></h1>
-</header>
-
 <main class="book-scene" aria-label="Storybook">
-  <div class="board"></div>
-  <div class="edges-l"></div><div class="edges-r"></div>
   <div class="book" id="book"></div>
   <div class="spine"></div>
   <button class="corner prev" id="prevBtn" aria-label="Turn back a page" hidden><span class="fold"></span></button>
@@ -267,7 +225,7 @@
      visual:'Photograph — Sam and Casey laughing at a dinner table while a black-haired woman glares at them.'},
     {copy:['Deep trust formed. The kind where you want the other person to win at everything. Business, love — all of it.'],
      visual:'Cartoon — Sam, speech bubble to Casey: “You have to promise me you will not tell ANYONE this!”'},
-    {copy:['Then one night, Sam shared a vision: build a generational company — Source.com — and change the world.'],
+    {copy:['Then one night, Sam shared a vision: he would build a generational company, Source.com, and change the world.'],
      visual:'Illustration — Sam daydreaming on a massive yacht christened Source.com while it rains money.'},
     {copy:['Casey was IN. Immediately. Conviction before a single Tier 1 investor. Casey believed in Sam with all her heart.'],
      visual:'Photograph, cheeky — Casey thrusting out a term sheet and a pen.'},
