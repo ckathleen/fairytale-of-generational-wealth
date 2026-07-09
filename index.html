@@ -28,7 +28,7 @@
     min-height:100vh;overflow:hidden;
   }
 
-  /* ————— the book ————— */
+  /* ===== the book ===== */
   .book-scene{
     position:fixed;inset:0;
     perspective:2600px;
@@ -64,7 +64,7 @@
   .rule-frame i:nth-child(3){bottom:-7px;left:-5px;transform:scaleY(-1);}
   .rule-frame i:nth-child(4){bottom:-7px;right:-5px;transform:scale(-1);}
 
-  /* ————— page content styles ————— */
+  /* ===== page content styles ===== */
   .orn{color:var(--gold);font-size:clamp(12px,1.3vw,17px);letter-spacing:.6em;margin:1.2em 0 .9em;}
   .copy{
     max-width:34ch;font-size:clamp(12px,1.42vw,18px);line-height:1.62;
@@ -138,7 +138,7 @@
     color:var(--ink-soft);font-size:clamp(10px,1.1vw,14px);font-style:italic;line-height:1.7;}
   .colophon .mark{font-style:normal;color:var(--gold);font-size:1.4em;}
 
-  /* ————— turning leaves ————— */
+  /* ===== turning leaves ===== */
   .leaf{
     position:absolute;top:0;left:50%;width:50%;height:100%;
     transform-style:preserve-3d;transform-origin:left center;
@@ -164,7 +164,7 @@
     background:linear-gradient(90deg,transparent,rgba(40,28,18,.34) 48%,rgba(40,28,18,.4) 52%,transparent);
   }
 
-  /* ————— corner turn zones ————— */
+  /* ===== corner turn zones ===== */
   .corner{
     position:absolute;bottom:0;width:24%;height:26%;z-index:90;
     background:none;border:none;cursor:pointer;padding:0;font:inherit;
@@ -220,33 +220,33 @@
 
   var STORY=[
     {copy:['Once upon a time, Sam and Casey met the way all great partnerships begin: armed and fighting, somewhere north of San Francisco.'],
-     visual:'Photograph — two duelists sword-fighting in a golden, hilly field.'},
-    {copy:['The friendship blossomed on a ski trip to Sun Valley, where Sam and Casey learned to collaborate — and to strategize — on a mission to win the affection of a maiden.'],
-     visual:'Photograph — Sam and Casey laughing at a dinner table while a black-haired woman glares at them.'},
-    {copy:['Deep trust formed. The kind where you want the other person to win at everything. Business, love — all of it.'],
-     visual:'Cartoon — Sam, speech bubble to Casey: “You have to promise me you will not tell ANYONE this!”'},
+     visual:'Photograph: two duelists sword-fighting in a golden, hilly field.'},
+    {copy:['The friendship blossomed on a ski trip to Sun Valley, where Sam and Casey learned to collaborate and strategize on a mission to win the affection of a maiden.'],
+     visual:'Photograph: Sam and Casey laughing at a dinner table while a black-haired woman glares at them.'},
+    {copy:['Deep trust formed. The kind where you want the other person to win at everything. Business, love, all of it.'],
+     visual:'Cartoon: a speech bubble from Sam to Casey, “You have to promise me you will not tell ANYONE this!”'},
     {copy:['Then one night, Sam shared a vision: he would build a generational company, Source.com, and change the world.'],
-     visual:'Illustration — Sam daydreaming on a massive yacht christened Source.com while it rains money.'},
+     visual:'Illustration: Sam daydreaming on a massive yacht christened Source.com while it rains money.'},
     {copy:['Casey was IN. Immediately. Conviction before a single Tier 1 investor. Casey believed in Sam with all her heart.'],
-     visual:'Photograph, cheeky — Casey thrusting out a term sheet and a pen.'},
-    {copy:['Sam took Casey’s offer. Why? Because winning alone is boring. He wanted people who are smart, fun, and trusted — people who actually care about him becoming his greatest self. (And yes, making his female friends rich along the way. A true ally.)',
+     visual:'Photograph, cheeky: Casey thrusting out a term sheet and a pen.'},
+    {copy:['Sam took Casey’s offer. Why? Because winning alone is boring. He wanted people who are smart, fun, and trusted. People who actually care about him becoming his greatest self. (And yes, making his female friends rich along the way. A true ally.)',
            'More than that, Casey promised to complete two quests for Sam: find him the love of his life, and help him secure the best lead investor in the land.'],
-     visual:'Photograph — the handshake. A signing moment for the ages.'},
+     visual:'Photograph: the handshake. A signing moment for the ages.'},
     {copy:['Sam buys Source.com within 44 days. Some men negotiate. Sam closes.'],
-     visual:'Screen capture — a countdown clock beside the domain-purchase confirmation.'},
+     visual:'Screen capture: a countdown clock beside the domain-purchase confirmation.'},
     {copy:['After Topology and Genius invested, Casey, Adam, and Ben spread the lore far and wide: of every founder they had ever met, Sam alone possessed the generational aura to build a decacorn. Soon after, Sam raises a mega-round from a Tier 1 AI firm.'],
-     visual:'Illustration — town criers and a whisper network spreading the gospel of Sam.'},
-    {copy:['Casey engineers the biggest glow-up of Sam’s life, consulting on every detail — down to the exact skin laser. A superday with a famous dermatologist is already on the calendar.'],
-     visual:'Montage — before &amp; after, plus the dermatologist’s office.'},
-    {copy:['Sam gets to work. The universe aligns. Source breaks $1B in revenue in record time — and yes, beats Mercor.'],
-     visual:'Chart — rocket-ship revenue, up and to the right.'},
-    {copy:['Then, the most important quest of all: Topology searches long and far for Sam’s dream wife — beautiful, graceful, full of class, brilliant, Jewish, and ready to build an empire together.'],
-     visual:'Photograph — Casey interviewing a looong line of hopeful candidates.'},
+     visual:'Illustration: town criers and a whisper network spreading the gospel of Sam.'},
+    {copy:['Casey engineers the biggest glow-up of Sam’s life, consulting on every detail, down to the exact skin laser. A superday with a famous dermatologist is already on the calendar.'],
+     visual:'Montage: before &amp; after, plus the dermatologist’s office.'},
+    {copy:['Sam gets to work. The universe aligns. Source breaks $1B in revenue in record time. And yes, it beats Mercor.'],
+     visual:'Chart: rocket-ship revenue, up and to the right.'},
+    {copy:['Then came the most important quest of all. Topology searches long and far for Sam’s dream wife: beautiful, graceful, full of class, brilliant, Jewish, and ready to build an empire together.'],
+     visual:'Photograph: Casey interviewing a looong line of hopeful candidates.'},
     {copy:['Topology proves true love is real.'],
-     visual:'Fairytale wedding — Sam and his bride on horseback at a ranch in Sedona.'},
-    {copy:['Source becomes a wild success. Sam becomes a billionaire — with the marriage everyone dreams of and very few achieve. Casey tells her LPs that Sam returned Fund I. Casey and Sam’s kids go to school together.',
+     visual:'Fairytale wedding: Sam and his bride on horseback at a ranch in Sedona.'},
+    {copy:['Source becomes a wild success. Sam becomes a billionaire, with the marriage everyone dreams of and very few achieve. Casey tells her LPs that Sam returned Fund I. Casey and Sam’s kids go to school together.',
            'And everyone lives happily ever after.'],
-     visual:'San Francisco skyline — two mansions, one flying a “Topology Fund I · 10× DPI” banner, beside a castle whose standard reads “Source.com surpasses $10B in revenue.”'}
+     visual:'San Francisco skyline: two mansions, one flying a “Topology Fund I · 10× DPI” banner, beside a castle whose standard reads “Source.com surpasses $10B in revenue.”'}
   ];
 
   function frame(){return '<div class="rule-frame"><i>❧</i><i>❧</i><i>❧</i><i>❧</i></div>';}
@@ -274,7 +274,7 @@
       '<div class="sub">(and Marriage)</div>'+
       '<div class="cover-plate"><div class="plate-frame">'+
         '<div class="plate-no">Cover Plate</div>'+
-        '<p class="plate-desc">Storybook cover — Sam standing beside his beautiful wife, Casey popping up behind them, photobombing.</p>'+
+        '<p class="plate-desc">Storybook cover: Sam standing beside his beautiful wife, Casey popping up behind them, photobombing.</p>'+
         '<div class="plate-hint">· visual to come ·</div>'+
       '</div></div>'+
     '</div>');
